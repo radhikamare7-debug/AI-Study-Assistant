@@ -27,24 +27,11 @@ AI Study Assistant is an AI-powered web application designed to help engineering
 - Google Gemini API
 
 ## Installation
-
-1. Clone or download this repository.
-2. Install the required packages:
-
-   `pip install -r requirements.txt`
-
-3. Create a `.env` file and configure your Gemini API key and MySQL database settings.
-4. Make sure MySQL Server is running.
-5. Start the application:
-
-   `python web_app.py`
-
-6. Open your browser and visit:
-
-   `http://127.0.0.1:5000`
+1. Install packages using: pip install -r requirements.txt
+2. Create a .env file with your API key and database settings.
+3. Start MySQL Server.
+4. Run: python web_app.py
+5. Open http://127.0.0.1:5000
 
 ## Note
-Gemini API responses depend on API availability and usage quota. Demo responses may be displayed when the API is unavailable.
-
-## Developer
-AI Study Assistant Project
+Gemini API responses depend on API availability and usage quota. Demo responses may appear when the API is unavailable.
