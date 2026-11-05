@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text Summarizer - AI Study Assistant</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5ff;
+            color: #1e293b;
+        }
+
+        header {
+            background: #4338ca;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #0001;
+        }
+
+        textarea, select {
+            width: 100%;
+            padding: 13px;
+            margin: 12px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: #4338ca;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #312e81;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #eef2ff;
+            border-radius: 10px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .message {
+            margin-top: 15px;
+            color: #dc2626;
+        }
+
+        a {
+            color: #4338ca;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📄 AI Text Summarizer</h1>
+    <p>Convert Long Text into Simple Short Notes</p>
+</header>
+
+<main>
+
+    <h2>Summarize Your Text</h2>
+
+    <p>Paste your notes or study material below.</p>
+
+    <form method="POST" action="{{ url_for('text_summarizer') }}">
+
+        <textarea
+            name="text"
+            placeholder="Paste your study material here..."
+            required
+        ></textarea>
+
+        <select name="summary_type">
+            <option value="Short Summary">Short Summary</option>
+            <option value="Detailed Summary">Detailed Summary</option>
+            <option value="Important Points">Important Points</option>
+        </select>
+
+        <button type="submit">Summarize Text</button>
+
+    </form>
+
+    {% if error %}
+        <div class="message">{{ error }}</div>
+    {% endif %}
+
+    {% if answer %}
+        <div class="result">
+            <h3>📚 Generated Summary</h3>
+            {{ answer }}
+        </div>
+    {% endif %}
+
+    <br>
+
+    <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Topic Explanation - AI Study Assistant</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5ff;
+            color: #1e293b;
+        }
+
+        header {
+            background: #4338ca;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #0001;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 15px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #4338ca;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #312e81;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #eef2ff;
+            border-radius: 10px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .message {
+            margin: 15px 0;
+            color: #dc2626;
+        }
+
+        a {
+            color: #4338ca;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📖 Topic Explanation</h1>
+        <p>Understand Engineering Topics with AI</p>
+    </header>
+
+    <main>
+
+        <h2>Ask About Any Topic</h2>
+
+        <p>Enter your topic below to get a simple explanation.</p>
+
+        <form method="POST" action="{{ url_for('topic_explanation') }}">
+
+            <input
+                type="text"
+                name="topic"
+                placeholder="Example: Explain Operating System"
+                required
+            >
+
+            <button type="submit">Generate Explanation</button>
+
+        </form>
+
+        {% if error %}
+            <div class="message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if answer %}
+            <div class="result">
+                <h3>AI Explanation</h3>
+                {{ answer }}
+            </div>
+        {% endif %}
+
+        <br>
+
+        <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef3ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            width: 340px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #243b70;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3157c8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2444a5;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        a {
+            color: #3157c8;
+        }
+
+        .message {
+            padding: 10px;
+            background: #fff0f0;
+            color: #9b2222;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            background: #e8f8ec;
+            color: #176b2c;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Create Account</h2>
+    <p>AI Study Assistant</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="message {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('register') }}">
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            maxlength="100"
+            required
+        >
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            maxlength="100"
+            required
+        >
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password (minimum 8 characters)"
+            minlength="8"
+            required
+        >
+
+        <button type="submit">Create Account</button>
+
+    </form>
+
+    <p>Already registered?
+        <a href="{{ url_for('login') }}">Login</a>
+    </p>
+
+</div>
+
+</body>
+</html>

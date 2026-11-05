@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt History</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5ff;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #4338ca;
+            text-align: center;
+        }
+
+        .history-card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .history-card p {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .date {
+            color: #666;
+            font-size: 13px;
+        }
+
+        a {
+            display: inline-block;
+            background: #4338ca;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Prompt History</h1>
+
+    <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+
+    {% if history %}
+
+        {% for item in history %}
+
+            <div class="history-card">
+
+                <h3>Question / Prompt</h3>
+                <p>{{ item.prompt }}</p>
+
+                <h3>AI Response</h3>
+                <p>{{ item.response or "No response available." }}</p>
+
+                <p class="date">
+                    Date: {{ item.created_at }}
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="history-card">
+            <p>No prompt history available yet.</p>
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
